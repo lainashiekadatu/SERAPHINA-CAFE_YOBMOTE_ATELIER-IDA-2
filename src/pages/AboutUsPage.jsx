@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./AboutUsPage.css"; // Lumabas patungong src folder
+import "./AboutUsPage.css";
 
-// Import images mula sa assets (Base sa structure mo: ../assets/)
-import cafe from "../images/cafe.png"; 
-import brew from "../images/brew.png"; 
-import team from "../images/team.jpg"; 
-import interior from "../images/interior.png"; 
-import vision from "../images/vision.png"; 
+// Import images
+import cafe from "../images/cafe.png";
+import brew from "../images/brew.png";
+import team from "../images/team.jpg";
+import interior from "../images/interior.png";
+import vision from "../images/vision.png";
 
 function AboutUsPage() {
   return (
     <div className="about-page-container">
+
       {/* TITLE */}
       <div className="titleBox">ABOUT US</div>
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <div className="hero-section">
         <img src={cafe} alt="Cafe Exterior" className="hero-img" />
       </div>
@@ -23,6 +24,7 @@ function AboutUsPage() {
       {/* MISSION */}
       <section className="section missionSection">
         <div className="sectionTitle">MISSION</div>
+
         <p className="missionText">
           At Café Yobmôté Atelier, our mission is to provide a warm and welcoming
           space where people can enjoy quality coffee, delicious meals, and
@@ -33,46 +35,68 @@ function AboutUsPage() {
 
       {/* VISION */}
       <section className="sectionFlex">
+
         <div className="visionText">
           <div className="sectionTitle">VISION</div>
+
           <p className="missionText">
-            Our vision is to become a beloved café known for quality, creativity,
-            and community connection—where every visit feels special and memorable.
+            Our vision is to become a beloved café known for quality,
+            creativity, and community connection—where every visit feels
+            special and memorable.
           </p>
         </div>
+
         <div className="visionImage">
           <img src={vision} alt="Our Vision" />
         </div>
       </section>
 
-      {/* OUR VALUES */}
-      <section className="section">
+      {/* VALUES */}
+      <section className="section valuesSection">
+
         <div className="sectionTitle">OUR VALUES</div>
+
         <div className="valuesRow">
+
           {["Quality", "Community", "Sustainability"].map((item) => (
+
             <div key={item} className="valueCard">
+
               <div className="icon-placeholder"></div>
+
               <div className="valueTitle">{item}</div>
+
               <p className="valueDesc">
-                We are committed to delivering the best experience in every service we offer.
+                We are committed to delivering the best experience in every
+                service we offer.
               </p>
+
             </div>
+
           ))}
+
         </div>
 
+        {/* BUTTONS */}
         <div className="buttonRow">
-          <Link to="/menu">
-            <button className="primaryBtn">View Menu</button>
+
+          <Link to="/menu" className="primaryBtn">
+            VIEW MENU
           </Link>
-          <Link to="/contact">
-            <button className="secondaryBtn">Contact Us</button>
+
+          <Link to="/contact" className="secondaryBtn">
+            CONTACT US
           </Link>
+
         </div>
+
       </section>
 
-      {/* OUR STORY */}
-      <section className="section">
+      {/* STORY */}
+      <section className="section storySection">
+
         <div className="sectionTitle">OUR STORY</div>
+
         <p className="missionText">
           Café Yobmôté Atelier started as a simple idea—to bring people together
           through good coffee and a cozy atmosphere. Over time, it grew into a
@@ -80,17 +104,23 @@ function AboutUsPage() {
         </p>
 
         <div className="imageRow">
+
           <div className="storyImg">
             <img src={team} alt="Our Team" />
           </div>
+
           <div className="storyImg">
-            <img src={interior} alt="Café Interior" />
+            <img src={interior} alt="Cafe Interior" />
           </div>
+
           <div className="storyImg">
             <img src={brew} alt="Coffee Brewing" />
           </div>
+
         </div>
+
       </section>
+
     </div>
   );
 }

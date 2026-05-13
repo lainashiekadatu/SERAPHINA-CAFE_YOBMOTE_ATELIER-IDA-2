@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import "./Cart.css"; // Fixed: Added ../ to reach the src folder
+import "./Cart.css"; 
 
-// Assets imports - Using the images folder as seen in your file tree
-import tuna from "../images/tuna.jpg";
-import grilled from "../images/grilled.jpg";
-import ham from "../images/ham.jpg";
-import bbq from "../images/bbq.jpg";
-
-const CartPage = () => {
+const CartPage = ({ cart, setCart }) => {
   const [page, setPage] = useState("cart");
-  const [cart, setCart] = useState([
-    { name: "Tuna Melt", price: 7.5, img: tuna, qty: 1 },
-  ]);
   const [orderStatus, setOrderStatus] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
 
@@ -25,8 +16,9 @@ const CartPage = () => {
     );
   };
 
-  const subtotal = cart.reduce((a, b) => a + b.price * b.qty, 0);
-  const total = subtotal + (cart.length > 0 ? 3 : 0);
+  // Delivery fee removed as requested
+  const subtotal = cart.reduce((a, b) => a + (b.price * b.qty), 0);
+  const total = subtotal; 
 
   const handlePayment = () => {
     if (!paymentMethod) return;
@@ -50,18 +42,22 @@ const CartPage = () => {
               {cart.length > 0 ? (
                 cart.map((item, i) => (
                   <div className="cart-item" key={i}>
-                    <img src={item.img} alt={item.name} className="img-box" />
+                    <img src={item.img} alt={item.name} className="img-box" onError={(e) => e.target.src='https://via.placeholder.com/150'} />
                     <div className="item-details">
                       <h3>{item.name}</h3>
                       <p>₱{item.price.toFixed(2)}</p>
                     </div>
-                    <div className="quantity">
+                    
+                    {/* Fixed Quantity Controls */}
+                    <div className="quantity-controls">
                       <button onClick={() => updateQty(item.name, -1)}>-</button>
                       <span>{item.qty}</span>
                       <button onClick={() => updateQty(item.name, 1)}>+</button>
                     </div>
-                    <button className="secondaryBtn" onClick={() => updateQty(item.name, -item.qty)}>
-                      Remove
+
+                    {/* Remove button positioned to the right via CSS */}
+                    <button className="remove-btn" onClick={() => updateQty(item.name, -item.qty)}>
+                      REMOVE
                     </button>
                   </div>
                 ))
@@ -73,10 +69,14 @@ const CartPage = () => {
             {cart.length > 0 && (
               <div className="summary">
                 <h3>Order Summary</h3>
-                <div className="summary-row"><span>Subtotal</span><span>₱{subtotal.toFixed(2)}</span></div>
-                <div className="summary-row"><span>Delivery</span><span>₱3.00</span></div>
-                <div className="summary-row total"><span>Total</span><span>₱{total.toFixed(2)}</span></div>
-                <button className="primaryBtn" onClick={() => setPage("payment")}>Proceed to Checkout</button>
+                <div className="summary-row total">
+                  <span>Total</span>
+                  <span>₱{total.toFixed(2)}</span>
+                </div>
+                {/* Centered button via CSS */}
+                <button className="primaryBtn" onClick={() => setPage("payment")}>
+                  Proceed to Checkout
+                </button>
               </div>
             )}
           </div>

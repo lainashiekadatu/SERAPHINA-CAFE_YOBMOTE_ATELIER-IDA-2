@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-const NavBar = () => {
+// 1. Idagdag ang { cartCount } sa loob ng parenthesis
+const NavBar = ({ cartCount }) => {
   return (
     <header className="navbar">
       {/* Added 'Atelier' back in */}
@@ -12,9 +13,13 @@ const NavBar = () => {
         <Link to="/menu">MENU</Link>
         <Link to="/about">ABOUT</Link>
         <Link to="/contact">CONTACT</Link>
-        <Link to="/cart">CART (0)</Link>
-        <Link to="/account">ACCOUNT</Link>
-      </nav>
+        
+        {/* 2. Palitan ang (0) ng ({cartCount}) */}
+        <Link to="/cart">CART ({cartCount})</Link>
+        
+        
+        <Link to="/account">ACCOUNT</Link>  
+        </nav>
     </header>
   );
 };

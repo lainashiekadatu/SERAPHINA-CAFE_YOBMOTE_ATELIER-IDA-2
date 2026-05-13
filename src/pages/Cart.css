@@ -1,357 +1,277 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Playfair Display', serif;
+/* --- PAGE CONTAINER --- */
+.cart-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #F9F5F2;
+  min-height: 100vh;
 }
 
-/* COLORS */
-:root {
-  --deep-brown: #2D1B14;
-  --dark-brown: #4A3728;
-  --caramel: #967259;
-  --beige: #D9C5B2;
-  --cream: #F9F4F0;
-  --white: #FFFFFF;
-}
-
-/* PAGE */
-body {
-  background-color: var(--cream);
-  color: var(--deep-brown);
-}
-
-.page {
-  width: 100%;
-}
-
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 8%;
-  background: var(--white);
-  border-bottom: 1px solid var(--beige);
-}
-
-.brand {
-  font-weight: 900;
-  letter-spacing: 2px;
-  font-size: 1.3rem;
-}
-
-.navLinks {
-  display: flex;
-  gap: 25px;
-}
-
-.navBtn {
-  background: none;
-  border: none;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--dark-brown);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.navBtn:hover {
-  color: var(--caramel);
-}
-
-/* TITLE */
+/* --- TITLE --- */
 .titleBox {
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 700;
-  padding: 40px 0 10px;
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  color: #2D1B14;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-/* ================= MENU ================= */
-.menu-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 60px 8%;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 240px;
-  background: var(--white);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-body {
-  text-align: center;
-  padding: 20px;
-}
-
-.card-body h3 {
-  margin-bottom: 5px;
-  font-size: 1rem;
-}
-
-.card-body p {
-  margin-bottom: 15px;
-  color: var(--dark-brown);
-}
-
-/* BUTTONS */
-.primaryBtn {
-  width: 100%;
-  padding: 10px;
-  background: var(--deep-brown);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  gap: 10px;
-}
-
-.secondaryBtn {
-  white-space: nowrap;
-}
-
-.primaryBtn:hover {
-  background: var(--caramel);
-}
-
-.secondaryBtn {
-  border: 1px solid var(--deep-brown);
-  background: transparent;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* ================= CART ================= */
-.section {
-  padding: 60px 8%;
-}
-
+/* --- MAIN CONTENT LAYOUT --- */
 .cart-content {
   display: flex;
   gap: 30px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+/* --- LEFT SIDE: CART ITEMS --- */
 .cart-items {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: var(--white);
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  justify-content: space-between; /* Pushes content and remove button apart */
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .img-box {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .item-details {
   flex: 1;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
-.item-details h3 {
-  font-size: 14px;
-}
-
-.item-details p {
-  font-size: 13px;
-  color: var(--dark-brown);
-}
-
-/* QTY */
-.quantity {
+/* --- QUANTITY CONTROLS --- */
+.quantity-controls {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 15px;
+  background: #f2ede8;
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin: 0 20px;
 }
 
-.quantity button {
-  width: 28px;
-  height: 28px;
+.quantity-controls button {
+  background: none;
   border: none;
-  background: var(--beige);
-  border-radius: 5px;
+  font-size: 1.2rem;
   cursor: pointer;
+  color: #2D1B14;
+  font-weight: bold;
 }
 
-.qty-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* --- REMOVE BUTTON (Right Side) --- */
+.remove-btn {
+  background: transparent;
+  border: 1.5px solid #2D1B14;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
 }
-/* SUMMARY */
+
+.remove-btn:hover {
+  background: #2D1B14;
+  color: #ffffff;
+}
+
+/* --- RIGHT SIDE: ORDER SUMMARY --- */
 .summary {
   flex: 1;
-  background: var(--white);
-  padding: 25px;
-  border-radius: 12px;
-  height: fit-content;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items vertically inside */
 }
 
 .summary h3 {
-  margin-bottom: 15px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  width: 100%;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  width: 100%;
 }
 
 .total {
-  font-weight: bold;
-}
-
-/* ================= PAYMENT ================= */
-.page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-}
-
-.payment-card {
-  background: var(--white);
-  width: 380px;
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-.payment-methods {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.payment-methods button {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid var(--beige);
-  background: var(--cream);
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.payment-methods button.active {
-  border: 2px solid var(--deep-brown);
-  background: var(--beige);
-}
-
-/* ================= TRACKING ================= */
-.tracking-card {
-  background: var(--white);
-  width: 420px;
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-.tracking-status {
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0;
-}
-
-.step {
-  flex: 1;
-  padding: 10px;
-  border-bottom: 3px solid #ccc;
-  font-size: 14px;
-}
-
-.step.active {
-  border-bottom: 3px solid var(--deep-brown);
-  font-weight: bold;
-}
-
-.status-text {
-  margin-top: 20px;
-}
-
-/* UTIL */
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.item-card {
-  background: white;
-  border-radius: 25px; /* Extra rounded as seen in pic */
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Very soft shadow */
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.image-frame img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.item-details h3 {
-  margin: 15px 0 5px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-}
-
-.item-price {
-  color: #967259;
   font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 15px;
 }
 
-.add-to-cart-btn {
+/* --- CENTERED PRIMARY BUTTON --- */
+.primaryBtn {
   width: 100%;
+  max-width: 250px; /* Controlled width to look centered */
   padding: 15px;
   background-color: #2D1B14;
   color: white;
   border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+  /* text-transform: uppercase; */
+  display: block;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  background-color: #4A3728;
+  transform: translateY(-2px);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- PAYMENT CARD CONTAINER --- */
+.page-wrapper {
+  display: flex !important;
+  justify-content: center !important; /* Centers the card horizontally */
+  align-items: center !important; /* Centers the card vertically */
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.payment-card {
+  background: #ffffff !important; /* White card background */
+  width: 100%;
+  max-width: 500px; /* Limits width to look like a card */
+  padding: 40px;
+  border-radius: 25px; /* Large rounded corners */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft shadow */
+  text-align: center; /* Centers all text inside */
+}
+
+.payment-card h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
+  color: #2D1B14;
+}
+
+/* --- PAYMENT METHODS BUTTONS --- */
+.payment-methods {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.payment-methods button {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #D9C5B2; /* Light beige border */
+  background: #F9F4F0; /* Cream background */
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
   font-weight: 600;
+  transition: 0.3s;
+}
+
+/* Active State for Selected Method */
+.payment-methods button.active {
+  background: #D9C5B2 !important; /* Darker beige when selected */
+  border: 2px solid #2D1B14 !important; /* Bold brown border */
+}
+
+/* --- CONFIRM PAYMENT BUTTON --- */
+.payment-card .primaryBtn {
+  width: 100% !important; /* Full width of the card */
+  background-color: #2D1B14 !important; /* Deep brown */
+  color: #ffffff !important;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  border: none;
   cursor: pointer;
 }
 
-/* The Sidebar Cart */
-.cart-sidebar {
-  background: white;
+/* --- TRACKING CARD CONTAINER --- */
+.tracking-card {
+  background: #ffffff !important;
+  width: 100%;
+  max-width: 550px; /* Aligns with the professional card look */
+  padding: 40px;
   border-radius: 25px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* --- HORIZONTAL TRACKING STEPS --- */
+.tracking-status {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin: 40px 0;
+  border-bottom: 2px solid #e0d6cc; /* The baseline for the steps */
+  padding-bottom: 10px;
+}
+
+.step {
+  flex: 1;
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+/* Active State for the Steps */
+.step.active {
+  color: #2D1B14 !important;
+  font-weight: 800 !important;
+  border-bottom: 4px solid #2D1B14 !important; /* Thick indicator line */
+}
+
+/* --- STATUS TEXT & BUTTON --- */
+.status-text {
+  font-size: 1.2rem;
+  margin: 25px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.tracking-card .primaryBtn {
+  width: 100%;
+  max-width: 250px;
+  background-color: #2D1B14 !important;
+  color: #ffffff !important;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
 }

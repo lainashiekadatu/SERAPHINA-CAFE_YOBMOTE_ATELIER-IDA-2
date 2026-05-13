@@ -1,0 +1,127 @@
+/* --- PAGE CONTAINER --- */
+.contact-container {
+  max-width: 1100px; /* Aligns with your other pages */
+  margin: 0 auto; /* Centers the whole section */
+  padding: 60px 5%;
+  background-color: #F9F5F2; /* Matching brand cream background */
+  min-height: 100vh;
+}
+
+/* --- HEADER --- */
+.contact-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2D1B14;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.contact-header p {
+  color: #4A3728;
+  font-style: italic;
+}
+
+/* --- FLEX CONTENT LAYOUT --- */
+.contact-content {
+  display: flex; /* Side-by-side layout */
+  gap: 40px; /* Space between Info and Form */
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap; /* Stacks on mobile */
+}
+
+/* --- LEFT SIDE: CONTACT INFO --- */
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  background: #e8dfd5; /* Slightly darker cream for contrast */
+  padding: 40px;
+  border-radius: 20px;
+  height: fit-content;
+}
+
+.info-item {
+  margin-bottom: 25px;
+}
+
+.info-item h3 {
+  color: #2D1B14;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.info-item p {
+  color: #4A3728;
+  line-height: 1.6;
+}
+
+/* --- RIGHT SIDE: FORM WRAPPER --- */
+.contact-form-wrapper {
+  flex: 1.5; /* Form takes slightly more space */
+  min-width: 350px;
+  background: #ffffff; /* White card effect */
+  padding: 40px;
+  border-radius: 25px; /* Rounded look */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft shadow */
+}
+
+/* --- FORM ELEMENTS --- */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  color: #2D1B14;
+  margin-bottom: 8px;
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0d6cc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* --- SUBMIT BUTTON --- */
+.contact-form .primaryBtn {
+  width: 100%;
+  padding: 15px;
+  background-color: #2D1B14;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form .primaryBtn:hover {
+  background-color: #4A3728;
+  transform: translateY(-2px);
+}
+
+/* --- SUCCESS MESSAGE --- */
+.success-message {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.success-message h2 {
+  color: #2D1B14;
+  margin-bottom: 10px;
+}

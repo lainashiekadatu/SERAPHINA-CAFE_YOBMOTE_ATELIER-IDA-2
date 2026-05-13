@@ -1,121 +1,109 @@
-/* Import Fonts at the very top */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* --- GLOBAL RESET --- */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
+/* --- CHANGE THIS --- */
+* {
+  margin: 0; /* Remove !important */
+  padding: 0; /* Remove !important */
+  box-sizing: border-box;
 }
 
-* {
-  box-sizing: border-box;
+/* Ensure the main wrapper doesn't force children to stretch */
+.main-wrapper {
+  width: 100%;
+  display: block;
+}
+
+body, html {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F9F5F2;
+  font-family: 'Playfair Display', serif;
 }
 
 /* --- NAVBAR STYLING --- */
 .navbar {
   width: 100%;
-  height: 80px;
-  background-color: #ffffff;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5%;
-  position: relative;
-  z-index: 10;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 0 8%;
+  background: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #D9C5B2;
 }
 
 .logo {
-  font-family: 'Playfair Display', serif; /* Matching your logo font */
   font-weight: 700;
   font-size: 1.6rem;
-  color: #2D1B14; /* Deep Coffee Brown */
+  color: #2D1B14;
 }
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #4A3728;
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: #2D1B14;
+  font-size: 0.9rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+}
+
+/* --- HERO CONTAINER --- */
+.home-page-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.hero {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                    url("https://static.vecteezy.com/system/resources/thumbnails/035/796/334/small/ai-generated-an-aesthetic-studio-coffee-shop-interior-featuring-a-coffee-cup-and-plant-free-photo.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 30px;
+  overflow: hidden;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-style: italic;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+}
+
+.btn {
+  background-color: #2D1B14;
+  color: #FFFFFF;
+  padding: 14px 40px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
-.nav-links a:hover {
-  color: #967259;
-}
-
-/* --- HERO SECTION --- */
-.home-page-container .hero {
-  width: 100%;
-  height: calc(100vh - 80px); 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-              url("https://static.vecteezy.com/system/resources/thumbnails/035/796/334/small/ai-generated-an-aesthetic-studio-coffee-shop-interior-featuring-a-coffee-cup-and-plant-free-photo.jpg") center/cover no-repeat;
-  margin: 0;
-}
-
-/* --- HERO OVERLAY (The Center Box) --- */
-.home-page-container .hero-overlay {
-  background-color: rgba(45, 27, 20, 0.85); /* Slightly darker for better contrast */
-  backdrop-filter: blur(10px);
-  padding: 60px 40px;
-  border-radius: 24px;
-  text-align: center;
-  width: 90%;
-  max-width: 750px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* "Welcome to..." Title */
-.home-page-container .hero-overlay h1 {
-  color: #FFFFFF;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 4rem; /* Bold and large */
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 10px;
-  letter-spacing: -1px;
-}
-
-/* Subtext - Fixed color from image_2c3278.png */
-.home-page-container .hero-overlay p {
-  color: rgba(255, 255, 255, 0.85); /* Lightened for readability */
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin-bottom: 35px;
-}
-
-/* --- BUTTON: Aesthetic Tan/Coffee --- */
-.btn-hero {
-  background-color: #B58D6D; /* Richer Tan color */
-  color: #FFFFFF;
-  padding: 16px 45px;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border-radius: 12px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(181, 141, 109, 0.3);
-}
-
-.btn-hero:hover {
-  background-color: #967259; /* Darker on hover */
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+.btn:hover {
+  background-color: #4A3728;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css"; // Fixed: Added ../ dahil nasa loob na ito ng pages folder
+import "./Contact.css"; // Fixed: Added ../ dahil nasa loob na ito ng pages folder
 
 const Contact = () => {
   const [formData, setFormData] = useState({
