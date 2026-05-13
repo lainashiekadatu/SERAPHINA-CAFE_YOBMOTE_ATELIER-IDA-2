@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&display=swap');
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --deep-brown: #2D1B14;
+  --dark-brown: #4A3728;
+  --caramel: #967259;
+  --beige: #D9C5B2;
+  --cream: #F9F4F0;
+  --white: #FFFFFF;
+  --gray-border: #eeeeee;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--deep-brown);
+  font-family: "Playfair Display", serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 6%;
+  background: var(--white);
+  border-bottom: 1px solid var(--beige);
+  flex-wrap: nowrap;
+}
+
+.brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+}
+
+.navBtn {
+  font-family: "Playfair Display", serif;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--dark-brown);
+}
+
+.navBtn:hover {
+  color: var(--caramel);
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+/* ===== LAYOUT ===== */
+.payment-container {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+}
+
+/* ===== BOX ===== */
+.payment-box {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+  border: 1px solid #ddd;
+  overflow: hidden; /* important for header strip */
+}
+
+/* 🔥 DARK HEADER STRIP INSIDE BOX */
+.payment-box h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 15px 20px;
+  background: var(--deep-brown); /* darker top section */
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* CONTENT INSIDE BOX */
+.payment-box > *:not(h3) {
+  padding: 20px;
+}
+
+/* ===== METHODS ===== */
+.method-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: "Playfair Display", serif;
+}
+
+.method-option input[type="radio"] {
+  accent-color: var(--deep-brown);
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== PROMO ===== */
+.promo-group {
+  display: flex;
+  gap: 10px;
+}
+
+.promo-group input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: "Playfair Display", serif;
+}
+
+.apply-btn {
+  padding: 0 25px;
+  background: var(--deep-brown);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Playfair Display", serif;
+}
+
+.apply-btn:hover {
+  background: var(--caramel);
+}
+
+/* ===== SUMMARY ===== */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-size: 1rem;
+  font-family: "Playfair Display", serif;
+}
+
+.summary-row.total {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--gray-border);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+/* ===== BUTTON ===== */
+.confirm-btn {
+  width: 100%;
+  margin-top: 4px;
+  padding: 15px;
+  background: var(--deep-brown);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  text-transform: none;
+  font-family: "Playfair Display", serif;
+}
+
+.confirm-btn:hover {
+  background: var(--caramel);
+}
