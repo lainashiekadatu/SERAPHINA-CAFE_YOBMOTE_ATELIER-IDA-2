@@ -107,3 +107,48 @@ body, html {
 .btn:hover {
   background-color: #4A3728;
 }
+
+/* --- MOBILE RESPONSIVENESS (ILAGAY SA PINAKA-BABA) --- */
+
+@media (max-width: 768px) {
+  /* 1. Inayos ang NavBar para hindi siksikan */
+  nav { 
+    flex-direction: column; 
+    padding: 10px 0;
+    height: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space sa pagitan ng HOME, MENU, etc. */
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* 2. Inayos ang Welcome Text (Hero Section) para sakto sa image_e79e19.jpg */
+  .hero h1 {
+    font-size: 1.6rem; 
+    padding: 0 15px;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .hero-overlay {
+    padding: 15px;
+    width: 90%; /* Para hindi dikit sa edge ng screen */
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

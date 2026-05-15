@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css"; 
 
 const CartPage = ({ cart, setCart }) => {
+  const navigate = useNavigate();
   const [page, setPage] = useState("cart");
-  const [orderStatus, setOrderStatus] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const updateQty = (name, change) => {
@@ -16,112 +17,114 @@ const CartPage = ({ cart, setCart }) => {
     );
   };
 
-  // Delivery fee removed as requested
-  const subtotal = cart.reduce((a, b) => a + (b.price * b.qty), 0);
-  const total = subtotal; 
+  const total = cart.reduce((a, b) => a + (b.price * b.qty), 0);
 
   const handlePayment = () => {
     if (!paymentMethod) return;
-    setPage("tracking");
-    setTimeout(() => setOrderStatus(1), 3000);
-    setTimeout(() => setOrderStatus(2), 7000);
+
+    const finalOrder = [...cart];
+    const finalTotal = total;
+
+    setCart([]); // Clear cart for Navbar update
+
+    navigate("/success", { 
+      state: { 
+        orderItems: finalOrder, 
+        total: finalTotal,
+        paymentMethod: paymentMethod,
+        fromPayment: true 
+      } 
+    });
   };
 
   return (
     <div className="cart-page-container">
       <div className="titleBox">
-        {page === "cart" && "YOUR CART"}
-        {page === "payment" && "PAYMENT"}
-        {page === "tracking" && "ORDER TRACKING"}
+        {page === "cart" ? "YOUR CART" : "PAYMENT"}
       </div>
 
       {page === "cart" && (
         <div className="section">
-          <div className="cart-content">
-            <div className="cart-items">
-              {cart.length > 0 ? (
-                cart.map((item, i) => (
+          {cart.length > 0 ? (
+            <div className="cart-content">
+              <div className="cart-items">
+                {cart.map((item, i) => (
                   <div className="cart-item" key={i}>
-                    <img src={item.img} alt={item.name} className="img-box" onError={(e) => e.target.src='https://via.placeholder.com/150'} />
+                    <img src={item.img} alt={item.name} className="img-box" />
                     <div className="item-details">
                       <h3>{item.name}</h3>
                       <p>₱{item.price.toFixed(2)}</p>
                     </div>
-                    
-                    {/* Fixed Quantity Controls */}
                     <div className="quantity-controls">
                       <button onClick={() => updateQty(item.name, -1)}>-</button>
                       <span>{item.qty}</span>
                       <button onClick={() => updateQty(item.name, 1)}>+</button>
                     </div>
-
-                    {/* Remove button positioned to the right via CSS */}
-                    <button className="remove-btn" onClick={() => updateQty(item.name, -item.qty)}>
-                      REMOVE
-                    </button>
+                    <div className="item-total">
+                       ₱{(item.price * item.qty).toFixed(2)}
+                    </div>
                   </div>
-                ))
-              ) : (
-                <p>Your cart is empty.</p>
-              )}
-            </div>
+                ))}
+              </div>
 
-            {cart.length > 0 && (
               <div className="summary">
                 <h3>Order Summary</h3>
                 <div className="summary-row total">
-                  <span>Total</span>
+                  <span>Total Amount</span>
                   <span>₱{total.toFixed(2)}</span>
                 </div>
-                {/* Centered button via CSS */}
                 <button className="primaryBtn" onClick={() => setPage("payment")}>
-                  Proceed to Checkout
+                  PROCEED TO CHECKOUT
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="empty-cart-wrapper">
+              <div className="empty-cart-content">
+                <div className="empty-icon">☕</div>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't discovered your favorite blend yet.</p>
+                <button className="primaryBtn" onClick={() => navigate("/menu")}>
+                  EXPLORE OUR MENU
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
       {page === "payment" && (
         <div className="page-wrapper">
           <div className="payment-card">
-            <h2>Total: ₱{total.toFixed(2)}</h2>
+            <h3 className="payment-title">Select Payment Method</h3>
+            <h2 className="payment-amount" style={{fontSize: '2rem', margin: '10px 0 30px'}}>
+                ₱{total.toFixed(2)}
+            </h2>
+            
             <div className="payment-methods">
               {["gcash", "cash", "card"].map((method) => (
                 <button 
                   key={method}
-                  className={paymentMethod === method ? "active" : ""} 
+                  className={paymentMethod === method ? "method-btn active" : "method-btn"} 
                   onClick={() => setPaymentMethod(method)}
                 >
                   {method.toUpperCase()}
                 </button>
               ))}
             </div>
-            <button className="primaryBtn" onClick={handlePayment} disabled={!paymentMethod}>
-              Confirm Payment
-            </button>
-          </div>
-        </div>
-      )}
 
-      {page === "tracking" && (
-        <div className="page-wrapper">
-          <div className="tracking-card">
-            <p>Payment Method: <strong>{paymentMethod.toUpperCase()}</strong></p>
-            <div className="tracking-status">
-              <div className={orderStatus >= 0 ? "step active" : "step"}>Preparing</div>
-              <div className={orderStatus >= 1 ? "step active" : "step"}>Brewing</div>
-              <div className={orderStatus >= 2 ? "step active" : "step"}>Ready</div>
+            <div className="payment-actions">
+                <button className="secondaryBtn" onClick={() => setPage("cart")}>
+                    BACK
+                </button>
+                <button 
+                    className="primaryBtn" 
+                    onClick={handlePayment} 
+                    disabled={!paymentMethod}
+                >
+                    CONFIRM & VIEW RECEIPT
+                </button>
             </div>
-            <div className="status-text">
-              {orderStatus === 0 && "Preparing your order..."}
-              {orderStatus === 1 && "Brewing your coffee..."}
-              {orderStatus === 2 && "Ready for pick-up ☕"}
-            </div>
-            {orderStatus === 2 && (
-               <button className="primaryBtn" onClick={() => window.location.href="/"}>Back to Home</button>
-            )}
           </div>
         </div>
       )}

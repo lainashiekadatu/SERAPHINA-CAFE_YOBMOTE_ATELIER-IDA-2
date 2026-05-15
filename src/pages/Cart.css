@@ -1,4 +1,11 @@
-/* --- PAGE CONTAINER --- */
+:root {
+  --deep-brown: #2D1B14;
+  --dark-brown: #4A3728;
+  --caramel: #967259;
+  --beige: #D9C5B2;
+  --cream: #F9F4F0;
+}
+
 .cart-page-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -7,43 +14,31 @@
   min-height: 100vh;
 }
 
-/* --- TITLE --- */
 .titleBox {
   text-align: center;
   font-size: 2.5rem;
   font-family: 'Playfair Display', serif;
-  color: #2D1B14;
+  color: var(--deep-brown);
   margin-bottom: 50px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-/* --- MAIN CONTENT LAYOUT --- */
+/* --- CART LAYOUT --- */
 .cart-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 350px;
   gap: 30px;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* --- LEFT SIDE: CART ITEMS --- */
-.cart-items {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 300px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Pushes content and remove button apart */
   background: #ffffff;
-  padding: 20px 30px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 15px;
 }
 
 .img-box {
@@ -58,98 +53,115 @@
   margin-left: 20px;
 }
 
-/* --- QUANTITY CONTROLS --- */
 .quantity-controls {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: #f2ede8;
+  background: var(--cream);
   padding: 5px 15px;
   border-radius: 10px;
-  margin: 0 20px;
 }
 
 .quantity-controls button {
   background: none;
   border: none;
-  font-size: 1.2rem;
   cursor: pointer;
-  color: #2D1B14;
   font-weight: bold;
 }
 
-/* --- REMOVE BUTTON (Right Side) --- */
-.remove-btn {
-  background: transparent;
-  border: 1.5px solid #2D1B14;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-  white-space: nowrap;
-}
-
-.remove-btn:hover {
-  background: #2D1B14;
-  color: #ffffff;
-}
-
-/* --- RIGHT SIDE: ORDER SUMMARY --- */
+/* --- SUMMARY CARD --- */
 .summary {
-  flex: 1;
   background: #ffffff;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  min-width: 320px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers items vertically inside */
-}
-
-.summary h3 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.5rem;
-  width: 100%;
+  align-items: center;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
   width: 100%;
+  margin-bottom: 15px;
 }
 
-.total {
-  font-weight: 700;
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  margin-top: 15px;
+/* --- PAYMENT CARD & CENTERING --- */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
 
-/* --- CENTERED PRIMARY BUTTON --- */
+.payment-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.payment-methods {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.method-btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--beige);
+  background: var(--cream);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.method-btn.active {
+  background: var(--deep-brown);
+  color: white;
+  border: 1px solid var(--deep-brown);
+}
+
+/* --- CENTERED BUTTONS LOGIC --- */
+.payment-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the buttons horizontally */
+  gap: 12px;
+}
+
 .primaryBtn {
   width: 100%;
-  max-width: 250px; /* Controlled width to look centered */
+  max-width: 280px; /* Controlled width for the look in your image */
   padding: 15px;
-  background-color: #2D1B14;
+  background-color: var(--deep-brown);
   color: white;
   border: none;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
   transition: 0.3s;
-  /* text-transform: uppercase; */
-  display: block;
 }
 
-.primaryBtn:hover:not(:disabled) {
-  background-color: #4A3728;
-  transform: translateY(-2px);
+.secondaryBtn {
+  width: 100%;
+  max-width: 280px;
+  padding: 12px;
+  background: transparent;
+  border: 1.5px solid var(--deep-brown);
+  color: var(--deep-brown);
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .primaryBtn:disabled {
@@ -157,89 +169,30 @@
   cursor: not-allowed;
 }
 
-/* --- PAYMENT CARD CONTAINER --- */
-.page-wrapper {
-  display: flex !important;
-  justify-content: center !important; /* Centers the card horizontally */
-  align-items: center !important; /* Centers the card vertically */
-  min-height: 60vh;
-  padding: 20px;
-}
-
-.payment-card {
-  background: #ffffff !important; /* White card background */
-  width: 100%;
-  max-width: 500px; /* Limits width to look like a card */
-  padding: 40px;
-  border-radius: 25px; /* Large rounded corners */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft shadow */
-  text-align: center; /* Centers all text inside */
-}
-
-.payment-card h2 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 30px;
-  color: #2D1B14;
-}
-
-/* --- PAYMENT METHODS BUTTONS --- */
-.payment-methods {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 15px;
-  margin: 30px 0;
-}
-
-.payment-methods button {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #D9C5B2; /* Light beige border */
-  background: #F9F4F0; /* Cream background */
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-/* Active State for Selected Method */
-.payment-methods button.active {
-  background: #D9C5B2 !important; /* Darker beige when selected */
-  border: 2px solid #2D1B14 !important; /* Bold brown border */
-}
-
-/* --- CONFIRM PAYMENT BUTTON --- */
-.payment-card .primaryBtn {
-  width: 100% !important; /* Full width of the card */
-  background-color: #2D1B14 !important; /* Deep brown */
-  color: #ffffff !important;
-  padding: 15px;
-  border-radius: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
+@media (max-width: 850px) {
+  .cart-content { grid-template-columns: 1fr; }
 }
 
 /* --- TRACKING CARD CONTAINER --- */
 .tracking-card {
   background: #ffffff !important;
   width: 100%;
-  max-width: 550px; /* Aligns with the professional card look */
+  max-width: 550px;
   padding: 40px;
   border-radius: 25px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   text-align: center;
-  margin: 0 auto;
+  margin: 40px auto; /* Para centered ang card sa page */
 }
 
-/* --- HORIZONTAL TRACKING STEPS --- */
+/* --- HORIZONTAL TRACKING STEPS (The Line) --- */
 .tracking-status {
   display: flex !important;
   justify-content: space-between !important;
   margin: 40px 0;
-  border-bottom: 2px solid #e0d6cc; /* The baseline for the steps */
-  padding-bottom: 10px;
+  border-bottom: 2px solid #e0d6cc; /* Ito yung baseline gray line */
+  padding-bottom: 0;
+  position: relative;
 }
 
 .step {
@@ -247,31 +200,85 @@
   font-size: 14px;
   color: #888;
   font-weight: 600;
-  padding-bottom: 10px;
+  padding-bottom: 15px; /* Space between text and line */
   position: relative;
+  text-align: center;
 }
 
-/* Active State for the Steps */
+/* Active State (Brown Line) */
 .step.active {
   color: #2D1B14 !important;
   font-weight: 800 !important;
-  border-bottom: 4px solid #2D1B14 !important; /* Thick indicator line */
+}
+
+/* Ito ang magpapakita ng makapal na brown line sa ilalim ng active step */
+.step.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; /* Sakto sa ibabaw ng baseline */
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #2D1B14;
+  border-radius: 2px;
 }
 
 /* --- STATUS TEXT & BUTTON --- */
 .status-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 25px 0;
-  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #4A3728;
 }
 
 .tracking-card .primaryBtn {
   width: 100%;
   max-width: 250px;
-  background-color: #2D1B14 !important;
-  color: #ffffff !important;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 20px;
-  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+/* --- IMPROVED EMPTY STATE --- */
+.empty-cart-wrapper {
+  display: flex;
+  justify-content: center; /* Gitna horizontally */
+  align-items: center;     /* Gitna vertically */
+  min-height: 60vh;        /* Taas ng space */
+  text-align: center;
+  width: 100%;
+}
+
+.empty-cart-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Sinisiguro na lahat ng text/button sa loob ay centered */
+  animation: fadeInUp 0.8s ease;
+}
+
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.empty-cart-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #2D1B14;
+}
+
+.empty-cart-content p {
+  color: #967259;
+  margin-bottom: 30px;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Siguraduhin na ang button ay hindi stretch */
+.empty-cart-content .primaryBtn {
+  width: auto;
+  min-width: 250px;
+  padding: 15px 30px;
 }

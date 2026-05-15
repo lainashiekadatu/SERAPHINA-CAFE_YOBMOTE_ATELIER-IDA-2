@@ -1,117 +1,80 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./SuccessfulPage.css"; 
 
-const App = () => {
-  const [method, setMethod] = useState("cod");
+const SuccessPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { orderItems = [], total = 0, fromPayment = false } = location.state || {};
+  
+  // Tracking State dito na nakalagay
+  const [orderStatus, setOrderStatus] = useState(0);
+  const [showTracking, setShowTracking] = useState(false);
+
+  useEffect(() => {
+    if (fromPayment) {
+      // Simulating the brewing process habang nasa receipt page
+      const timer1 = setTimeout(() => setOrderStatus(1), 5000); // Brewing after 5s
+      const timer2 = setTimeout(() => setOrderStatus(2), 10000); // Ready after 10s
+      return () => { clearTimeout(timer1); clearTimeout(timer2); };
+    }
+  }, [fromPayment]);
 
   return (
-    <div className="payment-page">
-      <nav className="navbar">
-        <div className="brand">
-          CAFÉ YOBMÔTÉ ATELIER
-        </div>
+    <div className="successPage">
+      <div className="successHeader">
+        <h1>ORDER SUCCESSFUL!</h1>
+        <p>Thank you for choosing Café Yobmóté Atelier ☕</p>
+        <div className="orderMeta">Order #12345 • Pickup</div>
+      </div>
 
-        <div className="navLinks">
-          <button className="navBtn">HOME</button>
-          <button className="navBtn">MENU</button>
-          <button className="navBtn">ABOUT US</button>
-          <button className="navBtn">CONTACT</button>
-          <button className="navBtn">ORDER ONLINE</button>
-          <button className="navBtn">CART</button>
-          <button className="navBtn">ACCOUNT</button>
-        </div>
-      </nav>
-
-      {/* HEADER */}
-      <header className="page-header">
-        <h1>PAYMENT METHOD</h1>
-      </header>
-
-      {/* MAIN */}
-      <main className="payment-container">
-        <div className="payment-grid">
-
-          {/* LEFT */}
-          <div className="payment-left">
-
-            <section className="payment-box">
-              <h3>Select Payment Method</h3>
-
-              <label className="method-option">
-                <input
-                  type="radio"
-                  checked={method === "cod"}
-                  onChange={() => setMethod("cod")}
-                />
-                Cash on Pickup
-              </label>
-
-              <label className="method-option">
-                <input
-                  type="radio"
-                  checked={method === "ewallet"}
-                  onChange={() => setMethod("ewallet")}
-                />
-                E-Wallet
-              </label>
-
-              <label className="method-option">
-                <input
-                  type="radio"
-                  checked={method === "card"}
-                  onChange={() => setMethod("card")}
-                />
-                Credit Card
-              </label>
-            </section>
-
-            <section className="payment-box">
-              <h3>Promo Code</h3>
-              <div className="promo-group">
-                <input type="text" placeholder="Enter promo code" />
-                <button className="apply-btn">Apply</button>
-              </div>
-            </section>
-
+      {/* RENDER NG RECEIPT (MAUUNA ITO) */}
+      <div className="receiptCard">
+        <h3>Order Summary</h3>
+        {orderItems.map((item, index) => (
+          <div className="itemRow" key={index}>
+            <img src={item.img} alt={item.name} />
+            <div className="itemInfo">
+              <h4>{item.name}</h4>
+              <p>Qty: {item.qty}</p>
+            </div>
+            <div className="price">₱{(item.price * item.qty).toFixed(2)}</div>
           </div>
-
-          {/* RIGHT */}
-          <div className="payment-right">
-
-            <section className="payment-box">
-              <h3>Order Summary</h3>
-
-              <div className="summary-row">
-                <span>Number of Items:</span>
-                <span>2</span>
-              </div>
-
-              <div className="summary-row">
-                <span>Items Total:</span>
-                <span>₱199.00</span>
-              </div>
-
-              <div className="summary-row">
-                <span>Discount:</span>
-                <span>- ₱50.00</span>
-              </div>
-
-              <div className="summary-row total">
-                <span>Total:</span>
-                <span>₱149.00</span>
-              </div>
-
-              <button className="confirm-btn">
-                Confirm Payment
-              </button>
-            </section>
-
+        ))}
+        <div className="totals">
+          <div className="row totalRow">
+            <span>Total Paid:</span>
+            <span>₱{total.toFixed(2)}</span>
           </div>
-
         </div>
-      </main>
+      </div>
+
+      {/* OPTIONAL: TRACKING VIEW (LALABAS LANG PAG PININDOT O AUTOMATIC) */}
+      {!showTracking ? (
+        <div className="actions">
+          <button className="secondaryBtn" onClick={() => setShowTracking(true)}>
+            Track Order Status
+          </button>
+          <button className="primaryBtn" onClick={() => navigate("/")}>Back to Home</button>
+        </div>
+      ) : (
+        <div className="deliveryCard">
+          <h4>Order Status</h4>
+          <div className="tracking-status" style={{display: 'flex', justifyContent: 'space-between', margin: '20px 0'}}>
+             <span style={{color: orderStatus >= 0 ? 'var(--deep-brown)' : '#ccc', fontWeight: 'bold'}}>Preparing</span>
+             <span style={{color: orderStatus >= 1 ? 'var(--deep-brown)' : '#ccc', fontWeight: 'bold'}}>Brewing</span>
+             <span style={{color: orderStatus >= 2 ? 'var(--deep-brown)' : '#ccc', fontWeight: 'bold'}}>Ready</span>
+          </div>
+          <p className="status-text" style={{textAlign: 'center', fontStyle: 'italic'}}>
+              {orderStatus === 0 && "We're preparing your ingredients..."}
+              {orderStatus === 1 && "Your coffee is now brewing! ☕"}
+              {orderStatus === 2 && "Your order is ready for pick-up! 🎉"}
+          </p>
+          <button className="primaryBtn" style={{marginTop: '20px'}} onClick={() => navigate("/")}>Back to Menu</button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default App;
+export default SuccessPage;

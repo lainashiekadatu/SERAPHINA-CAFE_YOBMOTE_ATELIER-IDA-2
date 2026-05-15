@@ -138,6 +138,13 @@ const MenuPage = ({ addToCart, cartCount }) => {
 
   return (
     <div className="cafe-container">
+      {/* Background Dimmer: only shows when a description is active */}
+      {selectedDescription && (
+        <div 
+          className="description-overlay" 
+          onClick={() => setSelectedDescription("")}
+        ></div>
+      )}
 
       <div className="menu-interface">
         <div className="top-bar">
@@ -147,7 +154,6 @@ const MenuPage = ({ addToCart, cartCount }) => {
             placeholder="Search our delicious menu..."
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-
         </div>
 
         <div className="filter-shelf">
@@ -189,11 +195,14 @@ const MenuPage = ({ addToCart, cartCount }) => {
           ))}
         </div>
 
+        {/* The Modal Popup */}
         {selectedDescription && (
           <div className="description-box">
             <h2>Food Description</h2>
             <p>{selectedDescription}</p>
-            <button className="close-btn" onClick={() => setSelectedDescription("")}>Close</button>
+            <button className="close-btn" onClick={() => setSelectedDescription("")}>
+              Close
+            </button>
           </div>
         )}
       </div>

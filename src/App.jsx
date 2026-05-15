@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./App.css";
 
 // Components
@@ -9,6 +9,8 @@ import AboutUsPage from "./pages/AboutUsPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import Contact from "./pages/Contact.jsx";
 import AccountPage from "./pages/AccountPage.jsx";
+// ADD THIS: Import SuccessfulPage base sa structure mo (image_195b98.png)
+import SuccessfulPage from "./pages/SuccessfulPage.jsx"; 
 
 function HomePage() {
   return (
@@ -39,7 +41,6 @@ function App() {
             : cartItem
         );
       }
-      // I-match ang 'image' mula menu sa 'img' property ng cart
       return [...prevCart, { ...item, img: item.image, qty: 1 }];
     });
   };
@@ -47,7 +48,6 @@ function App() {
   return (
     <Router>
       <div className="main-wrapper">
-        {/* Ipinasa ang cartCount sa NavBar para sa notification badge */}
         <NavBar cartCount={cart.reduce((sum, item) => sum + item.qty, 0)} /> 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -56,6 +56,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
           <Route path="/account" element={<AccountPage />} />
+          
+          {/* ADD THIS: Route para sa success page */}
+          <Route path="/success" element={<SuccessfulPage />} />
         </Routes>
       </div>
     </Router>
